@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlanWithSarkar - Scheme Finder</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1 id="appTitle">PlanWithSarkar</h1>
+    <div class="controls">
+      <label for="languageSelect" id="languageLabel">Language</label>
+      <select id="languageSelect" aria-label="Language selector">
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
+        <option value="mr">मराठी</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card" id="finderCard">
+      <h2 id="finderTitle">Government Scheme Finder (India)</h2>
+      <p id="finderSubtitle">Enter your details to view eligible schemes.</p>
+
+      <form id="eligibilityForm" class="grid-form">
+        <label>
+          <span id="ageLabel">Age</span>
+          <input id="age" type="number" min="18" max="100" required />
+        </label>
+
+        <label>
+          <span id="incomeLabel">Annual Income (₹)</span>
+          <input id="income" type="number" min="0" required />
+        </label>
+
+        <label>
+          <span id="stateLabel">State</span>
+          <select id="state" required>
+            <option value="">Select</option>
+            <option>Maharashtra</option>
+            <option>Gujarat</option>
+            <option>Karnataka</option>
+            <option>Madhya Pradesh</option>
+            <option>Rajasthan</option>
+            <option>Uttar Pradesh</option>
+            <option>Bihar</option>
+            <option>West Bengal</option>
+            <option>Tamil Nadu</option>
+            <option>Delhi</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label>
+          <span id="occupationLabel">Occupation</span>
+          <select id="occupation" required>
+            <option value="">Select</option>
+            <option value="farmer">Farmer</option>
+            <option value="student">Student</option>
+            <option value="salaried">Salaried</option>
+            <option value="self_employed">Self-employed</option>
+            <option value="unemployed">Unemployed</option>
+            <option value="woman_entrepreneur">Woman Entrepreneur</option>
+          </select>
+        </label>
+
+        <button type="submit" class="btn-primary" id="findSchemesButton">Find Schemes</button>
+      </form>
+
+      <div class="result-head">
+        <h3 id="eligibleTitle">Eligible Schemes</h3>
+        <a
+          class="btn-whatsapp"
+          id="whatsappButton"
+          href="https://wa.me/919999999999?text=Hello%20PlanWithSarkar%2C%20I%20need%20help%20with%20schemes%20and%20finance."
+          target="_blank"
+          rel="noopener noreferrer"
+        >WhatsApp</a>
+      </div>
+      <ul id="schemeResults" class="scheme-list"></ul>
+    </section>
+
+    <section class="card" id="leadCard">
+      <h2 id="leadTitle">Get a Call Back</h2>
+      <p id="leadSubtitle">Share your details for loans, subsidy and vehicle finance support.</p>
+
+      <form id="leadForm" class="grid-form">
+        <label>
+          <span id="nameLabel">Name</span>
+          <input id="leadName" type="text" required />
+        </label>
+        <label>
+          <span id="phoneLabel">Phone</span>
+          <input id="leadPhone" type="tel" pattern="[0-9]{10}" placeholder="10-digit mobile" required />
+        </label>
+        <label>
+          <span id="cityLabel">City</span>
+          <input id="leadCity" type="text" required />
+        </label>
+        <button class="btn-primary" type="submit" id="leadSubmit">Submit Lead</button>
+      </form>
+      <div id="leadMessage" class="message"></div>
+    </section>
+
+    <section class="card" id="adminCard">
+      <h2 id="adminTitle">Admin Panel - Manage Schemes</h2>
+      <p id="adminSubtitle">Add, update or remove schemes shown to users.</p>
+
+      <form id="adminForm" class="admin-grid">
+        <input type="hidden" id="schemeId" />
+        <label>
+          <span id="adminNameLabel">Scheme Name</span>
+          <input type="text" id="adminSchemeName" required />
+        </label>
+        <label>
+          <span id="adminStatesLabel">States (comma separated or All)</span>
+          <input type="text" id="adminStates" placeholder="Maharashtra, Gujarat or All" required />
+        </label>
+        <label>
+          <span id="adminOccupationLabel">Occupation</span>
+          <select id="adminOccupation" required>
+            <option value="all">All</option>
+            <option value="farmer">Farmer</option>
+            <option value="student">Student</option>
+            <option value="salaried">Salaried</option>
+            <option value="self_employed">Self-employed</option>
+            <option value="unemployed">Unemployed</option>
+            <option value="woman_entrepreneur">Woman Entrepreneur</option>
+          </select>
+        </label>
+        <label>
+          <span id="adminMinAgeLabel">Min Age</span>
+          <input type="number" id="adminMinAge" min="18" max="100" value="18" required />
+        </label>
+        <label>
+          <span id="adminMaxIncomeLabel">Max Income (₹)</span>
+          <input type="number" id="adminMaxIncome" min="0" value="9999999" required />
+        </label>
+        <button type="submit" class="btn-primary" id="adminSaveButton">Save Scheme</button>
+        <button type="button" class="btn-secondary" id="adminResetButton">Clear</button>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th id="thName">Name</th>
+              <th id="thStates">States</th>
+              <th id="thOccupation">Occupation</th>
+              <th id="thEligibility">Eligibility</th>
+              <th id="thActions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminSchemeTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
